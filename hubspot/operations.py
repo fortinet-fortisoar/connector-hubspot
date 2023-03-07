@@ -44,6 +44,8 @@ class HubSpot(object):
                     return response.json()
                 else:
                     return response.content
+            elif response.status_code == 404:
+                return {"message": "Not Found"}
             else:
                 if response.text != "":
                     err_resp = response.json()
@@ -113,9 +115,10 @@ def build_query_str(params):
 
 def check_tkt_properties(ticket_properties):
     properties = []
-    for item in ticket_properties:
-        if item.get('value') != "":
-            properties.append(item)
+    if isinstance(ticket_properties, list):
+        for item in ticket_properties:
+            if item.get('value') != "":
+                properties.append(item)
     return properties
 
 
@@ -138,7 +141,7 @@ def get_tickets_by_id(config, params):
         endpoint = f'batch-read{query_str}'
         response = hs.make_rest_call(endpoint=endpoint, payload=json.dumps(payload), params=params, method='POST')
     else:
-        endpoint = f'endpoint=ticket_ids{query_str}'
+        endpoint = f'{ticket_ids}{query_str}'
         response = hs.make_rest_call(endpoint=endpoint, params=params)
     return response
 
@@ -147,6 +150,7 @@ def create_tickets(config, params):
     hs = HubSpot(config)
     if params.pop('create') == 'Single Ticket':
         payload = []
+        params = build_params(params)
         if params.get('ticket_properties'):
             payload = check_tkt_properties(params.pop('ticket_properties'))
         if params.get('createdate'):
@@ -161,18 +165,8 @@ def create_tickets(config, params):
 
 def update_tickets(config, params):
     hs = HubSpot(config)
-    if params.pop('update') == 'Single Ticket':
-        payload = []
-        ticket_id = params.pop('ticket_id')
-        if params.get('ticket_properties'):
-            payload = params.pop('ticket_properties')
-        if params.get('createdate'):
-            params['createdate'] = convert_timestamp(params.get('createdate'))
-        payload.extend(create_payload(params))
-        response = hs.make_rest_call(endpoint=ticket_id, payload=json.dumps(payload), method='PUT')
-    else:
-        payload = params.get('ticket_properties')
-        response = hs.make_rest_call(endpoint='batch-update', payload=json.dumps(payload), method='POST')
+    payload = params.get('ticket_properties')
+    response = hs.make_rest_call(endpoint='batch-update', payload=json.dumps(payload), method='POST')
     return response
 
 

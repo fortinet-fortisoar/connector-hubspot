@@ -510,7 +510,7 @@
               {
                 "title": "Source",
                 "name": "source_type",
-                "type": "Select",
+                "type": "select",
                  "options": [
                   "CHAT",
                   "EMAIL",
@@ -536,7 +536,7 @@
               {
                 "title": "Priority",
                 "name": "hs_ticket_priority",
-                "type": "Select",
+                "type": "select",
                  "options": [
                   "LOW",
                   "MEDIUM",
@@ -671,147 +671,15 @@
       },
       "parameters": [
         {
-          "title": "Update",
-          "name": "update",
-          "description": "Update a 'Single Ticket' or 'Multiple Tickets'. Up to 100 tickets can be updated in a single request.",
-          "type": "select",
-          "visible": true,
+          "name": "ticket_properties",
+          "title": "Ticket Properties",
+          "type": "json",
+          "value": "[\n{\n\"objectId\": 1472380530,\n\"properties\": [\n{\n\"name\": \"content\",\n\"value\": \"This is another updated ticket updated.\"\n}\n]\n},\n{\n\"objectId\": 1473955247,\n\"properties\": [\n{\n\"name\": \"content\",\n\"value\": \"This is another updated ticket.\"\n}\n]\n}\n]",
           "editable": true,
+          "visible": true,
           "required": true,
-          "options": [
-            "Single Ticket",
-            "Multiple Tickets"
-          ],
-          "onchange": {
-            "Single Ticket": [
-              {
-                "title": "Ticket ID",
-                "name": "ticket_id",
-                "type": "integer",
-                "tooltip": "Specify the ID of the ticket you want to update on HubSpot.",
-                "description": "Specify the ID of the ticket you want to update on HubSpot.",
-                "visible": true,
-                "editable": true,
-                "required": true
-              },
-              {
-                "title": "Ticket Name",
-                "name": "subject",
-                "type": "text",
-                "tooltip": "Specify the new name of the ticket you want to be updated on HubSpot.",
-                "description": "Specify the new name of the ticket you want to be updated on HubSpot.",
-                "visible": true,
-                "editable": true,
-                "required": false
-              },
-              {
-                "title": "Pipeline",
-                "name": "hs_pipeline",
-                "type": "integer",
-                "placeholder": "0",
-                "tooltip": "Specify the new ID of the pipeline the ticket is in to update on HubSpot.",
-                "description": "Specify the new ID of the pipeline the ticket is in to update on HubSpot.",
-                "visible": true,
-                "editable": true,
-                "required": false
-              },
-              {
-                "title": "Ticket Status",
-                "name": "hs_pipeline_stage",
-                "type": "integer",
-                "placeholder": "1",
-                "tooltip": "Specify the new ticket's stage in its pipeline to be updated on HubSpot.",
-                "description": "Specify the new ticket's stage in its pipeline to be updated on HubSpot.",
-                "visible": true,
-                "editable": true,
-                "required": false
-              },
-              {
-                "title": "Ticket Description",
-                "name": "content",
-                "type": "text",
-                "tooltip": "Specify the new description about the ticket you want to update on HubSpot",
-                "description": "Specify the new description about the ticket you want to update on HubSpot",
-                "visible": true,
-                "editable": true,
-                "required": false
-              },
-              {
-                "title": "Source",
-                "name": "source_type",
-                "type": "Select",
-                 "options": [
-                  "CHAT",
-                  "EMAIL",
-                  "FORM",
-                  "PHONE"
-                ],
-                "tooltip": "Select the channel where ticket was originally submitted to update on HubSpot.",
-                "description": "Select the channel where ticket was originally submitted to update on HubSpot.",
-                "visible": true,
-                "editable": true,
-                "required": false
-              },
-              {
-                "title": "Ticket Owner",
-                "name": "hubspot_owner_id",
-                "type": "integer",
-                "tooltip": "Specify the ID of the new owner of the ticket to update on HubSpot.",
-                "description": "Specify the ID of the new owner of the ticket to update on HubSpot.",
-                "visible": true,
-                "editable": true,
-                "required": false
-              },
-              {
-                "title": "Priority",
-                "name": "hs_ticket_priority",
-                "type": "Select",
-                 "options": [
-                  "LOW",
-                  "MEDIUM",
-                  "HIGH"
-                ],
-                "tooltip": "Select the new value for level of attention needed on the ticket.",
-                "description": "Select the new value for level of attention needed on the ticket.",
-                "visible": true,
-                "editable": true,
-                "required": false
-              },
-              {
-                "title": "Create Date",
-                "name": "createdate",
-                "type": "datetime",
-                "tooltip": "Specify the creation date of the ticket to be updated on HubSpot.",
-                "description": "Specify the creation date of the ticket to be updated on HubSpot.",
-                "visible": true,
-                "editable": true,
-                "required": false
-              },
-              {
-                "name": "ticket_properties",
-                "title": "Other Properties",
-                "type": "json",
-                "editable": true,
-                "visible": true,
-                "required": false,
-                "description": "Specify a list of additional ticket properties you want to update for the ticket.",
-                "tooltip": "A list of additional ticket properties you want to update for the ticket. [\n{\n\"name\": \"hs_created_by_user_id\",\n\"value\": \"\"\n}\n]"
-              }
-            ],
-            "Multiple Tickets": [
-              {
-                "name": "ticket_properties",
-                "title": "Ticket Properties",
-                "type": "json",
-                "value": "[\n{\n\"objectId\": 1472380530,\n\"properties\": [\n{\n\"name\": \"content\",\n\"value\": \"This is another updated ticket updated.\"\n}\n]\n},\n{\n\"objectId\": 1473955247,\n\"properties\": [\n{\n\"name\": \"content\",\n\"value\": \"This is another updated ticket.\"\n}\n]\n}\n]",
-                "editable": true,
-                "visible": true,
-                "required": true,
-                "description": "Specify an array, with each element containing the ID of the ticket to update and a list of properties to update for that ticket.",
-                "tooltip": "An array, with each element containing the ID of the ticket to update and a list of properties to update for that ticket."
-              }
-            ]
-          }
+          "description": "Specify an array, with each element containing the ID of the ticket to update and a list of properties to update for that ticket.",
+          "tooltip": "An array, with each element containing the ID of the ticket to update and a list of properties to update for that ticket."
         }
       ],
       "enabled": true
