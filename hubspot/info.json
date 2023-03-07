@@ -864,7 +864,7 @@
         {
           "title": "Timestamp",
           "name": "timestamp",
-          "type": "integer",
+          "type": "text",
           "tooltip": "The Timestamp of the last change you pulled. If you are providing Timestamp then provide Change Type and Object ID as well.",
           "description": "The timestamp of the last change you pulled. If you are providing Timestamp then provide Change Type and Object ID as well.",
           "required": false,
