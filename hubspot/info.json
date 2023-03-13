@@ -1,0 +1,767 @@
+{
+  "name": "hubspot",
+  "label": "HubSpot",
+  "description": "HubSpot is a CRM platform with all the software, integrations, and resources you need to connect marketing, sales, content management, and customer service. This integration is used to get, create, update or delete a ticket.",
+  "publisher": "Fortinet",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "version": "1.0.0",
+  "category": "Ticket Management",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "help_online": "",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "resource",
+        "value": "https://api.hubapi.com",
+        "tooltip": "The service-based URI to which you will connect and perform the automated operations.",
+        "description": "The service-based URI to which you will connect and perform the automated operations."
+      },
+      {
+        "title": "Client ID",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "client_id",
+        "tooltip": "Unique APP ID of the HubSpot application that is used to create an authentication token required to access the API.",
+        "description": "Unique APP ID of the HubSpot application that is used to create an authentication token required to access the API."
+      },
+      {
+        "title": "Client Secret",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "client_secret",
+        "tooltip": "Unique APP Secret of the HubSpot application that is used to create an authentication token required to access the API.",
+        "description": "Unique APP Secret of the HubSpot application that is used to create an authentication token required to access the API."
+      },
+      {
+        "title": "Authorization Code",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "code",
+        "tooltip": "The authorization code that you acquired during the authorization step.",
+        "description": "The authorization code that you acquired from this URL replacing CLIENT_ID and REDIRECT_URI 'https://app.hubspot.com/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=oauth%20tickets'."
+      },
+      {
+        "title": "Redirect URL",
+        "description": "The redirect_uri of your app, where authentication responses can be sent and received by your app. It must exactly match one of the redirect_uri you registered in the app registration portal.",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "redirect_uri",
+        "placeholder": "E.g. https://localhost",
+        "tooltip": "The redirect_uri of your app, where authentication responses can be sent and received by your app. It must exactly match one of the redirect_uri you registered in the app registration."
+      },
+      {
+        "title": "Verify SSL",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not.\nBy default, this option is set as True."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "get_all_tickets",
+      "title": "Get All Tickets",
+      "description": "Retrieves the list of all tickets from HubSpot maximum up to 100 per request. You can get more detailed list by specifying input parameters.",
+      "category": "investigation",
+      "annotation": "get_all_tickets",
+      "output_schema": {
+        "objects": [
+          {
+            "objectType": "",
+            "portalId": "",
+            "objectId": "",
+            "properties": {
+              "subject": {
+                "versions": [
+                  {
+                    "name": "",
+                    "value": "",
+                    "timestamp": "",
+                    "source": "",
+                    "sourceVid": []
+                  }
+                ],
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceId": ""
+              },
+              "content": {
+                "versions": [
+                  {
+                    "name": "",
+                    "value": "",
+                    "timestamp": "",
+                    "source": "",
+                    "sourceVid": []
+                  }
+                ],
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceId": ""
+              },
+              "hs_pipeline": {
+                "versions": [
+                  {
+                    "name": "",
+                    "value": "",
+                    "timestamp": "",
+                    "source": "",
+                    "sourceVid": []
+                  }
+                ],
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceId": ""
+              },
+              "hs_pipeline_stage": {
+                "versions": [
+                  {
+                    "name": "",
+                    "value": "",
+                    "timestamp": "",
+                    "source": "",
+                    "sourceVid": []
+                  }
+                ],
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceId": ""
+              }
+            },
+            "version": "",
+            "isDeleted": ""
+          }
+        ],
+        "hasMore": "",
+        "offset" : ""
+      },
+      "parameters": [
+        {
+          "title": "Ticket Properties",
+          "name": "properties",
+          "type": "text",
+          "placeholder": "subject, content, hs_pipeline, hs_pipeline_stage",
+          "tooltip": "Comma-separated list of ticket properties to include in the response.",
+          "description": "Specify the Ticket Properties or a comma-separated list of Ticket Properties to included in the response (e.g., subject, content, hs_pipeline, hs_pipeline_stage).",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Ticket Properties With History",
+          "name": "propertiesWithHistory",
+          "type": "text",
+          "placeholder": "subject, content, hs_pipeline, hs_pipeline_stage",
+          "tooltip": "Comma-separated list of ticket properties to include in the response with full version history.",
+          "description": "This parameter behaves exactly like the properties parameter above, with the exception that properties included with this parameter also return the full version history for the property.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Offset",
+          "name": "offset",
+          "type": "integer",
+          "tooltip": "Used to get the next set of results. If hasMore is true in the previous response, you use the returned offset value to get the next set of records.",
+          "description": "Used to get the next set of results. If hasMore is true in the previous response, you use the returned offset value to get the next set of records.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "get_tickets_by_id",
+      "title": "Get Tickets By ID",
+      "description": "Retrieves specific tickets from HubSpot based on the Ticket ID(s) and other input parameters you have specified.",
+      "category": "investigation",
+      "annotation": "get_tickets_by_id",
+      "output_schema":{
+        "objectType": "",
+        "portalId": "",
+        "objectId": "",
+        "properties": {
+          "subject": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          },
+          "created_by": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          },
+          "content": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          },
+          "hs_pipeline": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          },
+          "hs_pipeline_stage": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          }
+        },
+        "isDeleted": ""
+      },
+      "parameters": [
+        {
+          "title": "Ticket ID",
+          "name": "ticket_ids",
+          "type": "text",
+          "tooltip": "Comma-separated list of Ticket IDs. You can include up to 100 IDs in a single request",
+          "description": "Specify the Ticket ID or a comma-separated list of Ticket IDs to retrieve from the HubSpot.",
+          "required": true,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Ticket Properties",
+          "name": "properties",
+          "type": "text",
+          "placeholder": "subject, content, hs_pipeline, hs_pipeline_stage",
+          "tooltip": "Comma-separated list of ticket properties to include in the response.",
+          "description": "Specify the Ticket Properties or a comma-separated list of Ticket Properties to included in the response (e.g., subject, content, hs_pipeline, hs_pipeline_stage).",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Ticket Properties With History",
+          "name": "propertiesWithHistory",
+          "type": "text",
+          "placeholder": "subject, content, hs_pipeline, hs_pipeline_stage",
+          "tooltip": "Comma-separated list of ticket properties to include in the response with full version history.",
+          "description": "This parameter behaves exactly like the properties parameter above, with the exception that properties included with this parameter also return the full version history for the property.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Include Deleted",
+          "name": "includeDeletes",
+          "type": "checkbox",
+          "tooltip": "Select to retrieve deleted records. By default, deleted records will not be returned by the API.",
+          "description": "You can check this box to retrieve even the deleted records. By default, deleted records will not be returned by the API.",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "value": false
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "create_tickets",
+      "title": "Create Tickets",
+      "description": "Creates a new Ticket(s) with the ticket properties based on the input parameters you have specified.",
+      "category": "investigation",
+      "annotation": "create_tickets",
+      "output_schema":{
+        "objectType": "",
+        "portalId": "",
+        "objectId": "",
+        "properties": {
+          "hs_lastmodifieddate": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          },
+          "subject": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          },
+          "hs_pipeline": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          },
+          "createdate": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          },
+          "content": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          },
+          "hs_pipeline_stage": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          },
+          "time_to_close": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": [],
+                "sourceMetadata": ""
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          }
+        },
+        "isDeleted": ""
+      },
+      "parameters": [
+        {
+          "title": "Create",
+          "name": "create",
+          "description": "Create a 'Single Ticket' or 'Multiple Tickets'. Up to 100 tickets can be created in a single request.",
+          "type": "select",
+          "visible": true,
+          "editable": true,
+          "required": true,
+          "options": [
+            "Single Ticket",
+            "Multiple Tickets"
+          ],
+          "onchange": {
+            "Single Ticket": [
+              {
+                "title": "Ticket Name",
+                "name": "subject",
+                "type": "text",
+                "tooltip": "Specify the name of the ticket you want to create on HubSpot.",
+                "description": "Specify the name of the ticket you want to create on HubSpot.",
+                "visible": true,
+                "editable": true,
+                "required": true
+              },
+              {
+                "title": "Pipeline",
+                "name": "hs_pipeline",
+                "type": "integer",
+                "placeholder": "0",
+                "tooltip": "Specify the ID of the pipeline the ticket is in.",
+                "description": "Specify the ID of the pipeline the ticket is in.",
+                "visible": true,
+                "editable": true,
+                "required": true
+              },
+              {
+                "title": "Ticket Status",
+                "name": "hs_pipeline_stage",
+                "type": "integer",
+                "placeholder": "1",
+                "tooltip": "Specify the ticket's stage in its pipeline.",
+                "description": "Specify the ticket's stage in its pipeline.",
+                "visible": true,
+                "editable": true,
+                "required": true
+              },
+              {
+                "title": "Ticket Description",
+                "name": "content",
+                "type": "text",
+                "tooltip": "Specify the description about the ticket you want to create on HubSpot",
+                "description": "Specify the description about the ticket you want to create on HubSpot",
+                "visible": true,
+                "editable": true,
+                "required": false
+              },
+              {
+                "title": "Source",
+                "name": "source_type",
+                "type": "select",
+                 "options": [
+                  "CHAT",
+                  "EMAIL",
+                  "FORM",
+                  "PHONE"
+                ],
+                "tooltip": "Select the channel where ticket was originally submitted.",
+                "description": "Select the channel where ticket was originally submitted.",
+                "visible": true,
+                "editable": true,
+                "required": false
+              },
+              {
+                "title": "Ticket Owner",
+                "name": "hubspot_owner_id",
+                "type": "integer",
+                "tooltip": "Specify the ID of the owner of the ticket.",
+                "description": "Specify the ID of the owner of the ticket.",
+                "visible": true,
+                "editable": true,
+                "required": false
+              },
+              {
+                "title": "Priority",
+                "name": "hs_ticket_priority",
+                "type": "select",
+                 "options": [
+                  "LOW",
+                  "MEDIUM",
+                  "HIGH"
+                ],
+                "tooltip": "Select the level of attention needed on the ticket.",
+                "description": "Select the level of attention needed on the ticket.",
+                "visible": true,
+                "editable": true,
+                "required": false
+              },
+              {
+                "title": "Create Date",
+                "name": "createdate",
+                "type": "datetime",
+                "tooltip": "Specify the creation date of the ticket. By default its created with current date and time.",
+                "description": "Specify the creation date of the ticket. By default its created with current date and time.",
+                "visible": true,
+                "editable": true,
+                "required": false
+              },
+              {
+                "name": "ticket_properties",
+                "title": "Other Properties",
+                "type": "json",
+                "value": "[\n{\n\"name\": \"hs_created_by_user_id\",\n\"value\": \"\"\n}\n]",
+                "editable": true,
+                "visible": true,
+                "required": false,
+                "description": "Specify a list of additional ticket properties you want to set for new ticket.",
+                "tooltip": "A list of additional ticket properties you want to set for new ticket."
+              }
+            ],
+            "Multiple Tickets": [
+              {
+                "name": "ticket_properties",
+                "title": "Ticket Properties",
+                "type": "json",
+                "value": "[\n[\n{\n\"name\": \"subject\",\n\"value\": \"This is an example ticket\"\n},\n{\n\"name\": \"content\",\n\"value\": \"Here are the details of the ticket.\"\n},\n{\n\"name\": \"hs_pipeline\",\n\"value\": \"0\"\n},\n{\n\"name\": \"hs_pipeline_stage\",\n\"value\": \"1\"\n}\n],\n[\n{\n\"name\": \"subject\",\n\"value\": \"This is an example ticket\"\n},\n{\n\"name\": \"content\",\n\"value\": \"Here are the details of the ticket.\"\n},\n{\n\"name\": \"hs_pipeline\",\n\"value\": \"0\"\n},\n{\n\"name\": \"hs_pipeline_stage\",\n\"value\": \"1\"\n}\n]\n]",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "description": "Specify an array of list of ticket properties you want to set for each new ticket. You must set the ticket pipeline and stage when creating a new ticket.",
+                "tooltip": "An array of list of ticket properties you want to set for each new ticket. You must set the ticket pipeline and stage when creating a new ticket."
+              }
+            ]
+          }
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "update_tickets",
+      "title": "Update Tickets",
+      "description": "Updates the ticket properties of a Ticket(s) based on the Ticket ID(s) you have specified.",
+      "category": "investigation",
+      "annotation": "update_tickets",
+      "output_schema": {
+        "objectType": "",
+        "portalId": "",
+        "objectId": "",
+        "properties": {
+          "hs_lastmodifieddate": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          },
+          "hs_ticket_priority": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          },
+          "content": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          },
+          "status": {
+            "versions": [
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              },
+              {
+                "name": "",
+                "value": "",
+                "timestamp": "",
+                "source": "",
+                "sourceVid": []
+              }
+            ],
+            "value": "",
+            "timestamp": "",
+            "source": "",
+            "sourceId": ""
+          }
+        },
+        "isDeleted": ""
+      },
+      "parameters": [
+        {
+          "name": "ticket_properties",
+          "title": "Ticket Properties",
+          "type": "json",
+          "value": "[\n{\n\"objectId\": 1472380530,\n\"properties\": [\n{\n\"name\": \"content\",\n\"value\": \"This is another updated ticket updated.\"\n}\n]\n},\n{\n\"objectId\": 1473955247,\n\"properties\": [\n{\n\"name\": \"content\",\n\"value\": \"This is another updated ticket.\"\n}\n]\n}\n]",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "Specify an array, with each element containing the ID of the ticket to update and a list of properties to update for that ticket.",
+          "tooltip": "An array, with each element containing the ID of the ticket to update and a list of properties to update for that ticket."
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "delete_tickets",
+      "title": "Delete Tickets",
+      "description": "Deletes the Ticket(s) based on the Ticket ID(s) you have specified.",
+      "category": "investigation",
+      "annotation": "delete_tickets",
+      "output_schema": {
+        "status": "",
+        "message": ""
+      },
+      "parameters": [
+        {
+          "title": "Ticket ID",
+          "name": "ticket_ids",
+          "type": "text",
+          "tooltip": "Comma-separated list of Ticket IDs. You can include up to 100 IDs in a single request",
+          "description": "Specify the Ticket ID or a comma-separated list of Ticket IDs to delete from the HubSpot.",
+          "visible": true,
+          "editable": true,
+          "required": true
+        }
+      ],
+      "enabled": true
+    },
+    {
+      "operation": "get_tickets_changes_log",
+      "title": "Get Tickets Changes Log",
+      "description": "Retrieves the list of all the changes made to ticket objects. Returns 1000 (or fewer) changes, starting with the least recent change. Returned changes are limited to the last 24 hours. Changes prior to that period will not be returned.",
+      "category": "investigation",
+      "annotation": "get_tickets_changes_log",
+      "output_schema": [
+        {
+          "timestamp": "",
+          "changeType": "",
+          "objectId": "",
+          "changes": {
+            "changedProperties": [],
+            "newAssociations": [],
+            "removedAssociations": [],
+            "newListMemberships": [],
+            "removedListMemberships": []
+          }
+        }
+      ],
+      "parameters": [
+        {
+          "title": "Timestamp",
+          "name": "timestamp",
+          "type": "text",
+          "tooltip": "The Timestamp of the last change you pulled. If you are providing Timestamp then provide Change Type and Object ID as well.",
+          "description": "The timestamp of the last change you pulled. If you are providing Timestamp then provide Change Type and Object ID as well.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Change Type",
+          "name": "change_type",
+          "type": "text",
+          "tooltip": "The last Change Type you pulled. If you are providing Change Type then provide Timestamp and Object ID as well.",
+          "description": "The last Change Type you pulled. If you are providing Change Type then provide Timestamp and Object ID as well.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        },
+        {
+          "title": "Object ID",
+          "name": "object_id",
+          "type": "integer",
+          "tooltip": "The ID of the last object you received changes for. If you are providing Object ID then provide Change Type and Timestamp as well.",
+          "description": "The ID of the last object you received changes for. If you are providing Object ID then provide Change Type and Timestamp as well.",
+          "required": false,
+          "editable": true,
+          "visible": true
+        }
+      ],
+      "enabled": true
+    }
+  ]
+}
+

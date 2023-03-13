@@ -1,0 +1,478 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "61071f31-f2f0-4893-8716-3debabfc8f09",
+      "@type": "WorkflowCollection",
+      "name": "Sample - HubSpot - 1.0.0",
+      "description": "HubSpot is a CRM platform with all the software, integrations, and resources you need to connect marketing, sales, content management, and customer service. This integration is used to get, create, update or delete a ticket.",
+      "visible": true,
+      "image": null,
+      "recordTags": [
+        "Hubspot"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "2dc7afd3-0a98-4202-8968-3c394c86c028",
+          "collection": "/api/3/workflow_collections/61071f31-f2f0-4893-8716-3debabfc8f09",
+          "triggerLimit": null,
+          "description": "Retrieves the list of all tickets from HubSpot maximum up to 100 per request. You can get more detailed list by specifying input parameters.",
+          "name": "Get All Tickets",
+          "tag": "#HubSpot",
+          "recordTags": [
+            "Hubspot"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/497ed710-37a7-49c2-b07b-2bd67b35cd6b",
+          "steps": [
+            {
+              "uuid": "497ed710-37a7-49c2-b07b-2bd67b35cd6b",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "9f4670a7-5af6-4836-9600-8f939edccd98",
+                "title": "HubSpot: Get All Tickets",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "4631636a-de87-45fd-8e0b-581484366b6e",
+              "@type": "WorkflowStep",
+              "name": "Get All Tickets",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "HubSpot",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "hubspot",
+                "operation": "get_all_tickets",
+                "operationTitle": "Get All Tickets"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "e426b7af-1faa-43d8-98d4-ab509abba05f",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get All Tickets",
+              "sourceStep": "/api/3/workflow_steps/497ed710-37a7-49c2-b07b-2bd67b35cd6b",
+              "targetStep": "/api/3/workflow_steps/4631636a-de87-45fd-8e0b-581484366b6e"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "d173880f-dc0a-4b57-bc07-b4fef3091a1a",
+          "collection": "/api/3/workflow_collections/61071f31-f2f0-4893-8716-3debabfc8f09",
+          "triggerLimit": null,
+          "description": "Retrieves specific tickets from HubSpot based on the Ticket ID(s) and other input parameters you have specified.",
+          "name": "Get Tickets By ID",
+          "tag": "#HubSpot",
+          "recordTags": [
+            "Hubspot"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/63eb05a9-4916-4d99-a378-6e6fee4dc568",
+          "steps": [
+            {
+              "uuid": "63eb05a9-4916-4d99-a378-6e6fee4dc568",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "c1f038a8-46fe-4333-bbdd-bedb43a156a7",
+                "title": "HubSpot: Get Tickets By ID",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "6397a2e0-f47a-4bdf-821f-f18119688248",
+              "@type": "WorkflowStep",
+              "name": "Get Tickets By ID",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "HubSpot",
+                "config": "''",
+                "params": {
+                  "includeDeletes": false
+                },
+                "version": "1.0.0",
+                "connector": "hubspot",
+                "operation": "get_tickets_by_id",
+                "operationTitle": "Get Tickets By ID"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "85b5245c-71b9-4e0a-89b5-5718e57a27a9",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Tickets By ID",
+              "sourceStep": "/api/3/workflow_steps/63eb05a9-4916-4d99-a378-6e6fee4dc568",
+              "targetStep": "/api/3/workflow_steps/6397a2e0-f47a-4bdf-821f-f18119688248"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "f5c45f38-b33d-46f2-b878-f4207c58628f",
+          "collection": "/api/3/workflow_collections/61071f31-f2f0-4893-8716-3debabfc8f09",
+          "triggerLimit": null,
+          "description": "Creates a new Ticket(s) with the ticket properties based on the input parameters you have specified.",
+          "name": "Create Tickets",
+          "tag": "#HubSpot",
+          "recordTags": [
+            "Hubspot"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/f2b1a0fa-8097-4435-9959-9489568628e3",
+          "steps": [
+            {
+              "uuid": "f2b1a0fa-8097-4435-9959-9489568628e3",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "3e7931a7-8849-496b-bac1-478835da7a83",
+                "title": "HubSpot: Create Tickets",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "158ed756-27d4-4cda-a8f7-21077e071826",
+              "@type": "WorkflowStep",
+              "name": "Create Tickets",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "HubSpot",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "hubspot",
+                "operation": "create_tickets",
+                "operationTitle": "Create Tickets"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "6f7f1d31-42e6-4af0-ae80-dc38216d56bf",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Create Tickets",
+              "sourceStep": "/api/3/workflow_steps/f2b1a0fa-8097-4435-9959-9489568628e3",
+              "targetStep": "/api/3/workflow_steps/158ed756-27d4-4cda-a8f7-21077e071826"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "68aa5c79-baaf-41f1-baf7-8ebe85732e5c",
+          "collection": "/api/3/workflow_collections/61071f31-f2f0-4893-8716-3debabfc8f09",
+          "triggerLimit": null,
+          "description": "Updates the ticket properties of a Ticket(s) based on the Ticket ID(s) you have specified.",
+          "name": "Update Tickets",
+          "tag": "#HubSpot",
+          "recordTags": [
+            "Hubspot"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/865af8e9-1cb0-405e-b70e-edbdd35e76c0",
+          "steps": [
+            {
+              "uuid": "865af8e9-1cb0-405e-b70e-edbdd35e76c0",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "d4d4232d-8ea0-4b09-bf2d-14f7af74b6f1",
+                "title": "HubSpot: Update Tickets",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "f1a54a0f-5695-43c5-876f-6d1567602b1a",
+              "@type": "WorkflowStep",
+              "name": "Update Tickets",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "HubSpot",
+                "config": "''",
+                "params": {
+                  "ticket_properties": "[\n{\n\"objectId\": 1472380530,\n\"properties\": [\n{\n\"name\": \"content\",\n\"value\": \"This is another updated ticket updated.\"\n}\n]\n},\n{\n\"objectId\": 1473955247,\n\"properties\": [\n{\n\"name\": \"content\",\n\"value\": \"This is another updated ticket.\"\n}\n]\n}\n]"
+                },
+                "version": "1.0.0",
+                "connector": "hubspot",
+                "operation": "update_tickets",
+                "operationTitle": "Update Tickets"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "401ae090-c74e-4c76-8431-0a90c6ea2c5d",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Update Tickets",
+              "sourceStep": "/api/3/workflow_steps/865af8e9-1cb0-405e-b70e-edbdd35e76c0",
+              "targetStep": "/api/3/workflow_steps/f1a54a0f-5695-43c5-876f-6d1567602b1a"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "5782528c-153c-4121-b4a8-652d019597af",
+          "collection": "/api/3/workflow_collections/61071f31-f2f0-4893-8716-3debabfc8f09",
+          "triggerLimit": null,
+          "description": "Deletes the Ticket(s) based on the Ticket ID(s) you have specified.",
+          "name": "Delete Tickets",
+          "tag": "#HubSpot",
+          "recordTags": [
+            "Hubspot"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/44c5b6f4-44c3-4179-94b9-8044c2fe3005",
+          "steps": [
+            {
+              "uuid": "44c5b6f4-44c3-4179-94b9-8044c2fe3005",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "242e0f5d-4075-4742-a4e3-a7c9c1e62ae2",
+                "title": "HubSpot: Delete Tickets",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "12cf2534-e582-4d49-997e-57d9cb582301",
+              "@type": "WorkflowStep",
+              "name": "Delete Tickets",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "HubSpot",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "hubspot",
+                "operation": "delete_tickets",
+                "operationTitle": "Delete Tickets"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "6419a2a2-847f-4a4e-8db7-f33448fc69c5",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Delete Tickets",
+              "sourceStep": "/api/3/workflow_steps/44c5b6f4-44c3-4179-94b9-8044c2fe3005",
+              "targetStep": "/api/3/workflow_steps/12cf2534-e582-4d49-997e-57d9cb582301"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "274ce24e-ad4c-41f7-aba6-e478fd39368e",
+          "collection": "/api/3/workflow_collections/61071f31-f2f0-4893-8716-3debabfc8f09",
+          "triggerLimit": null,
+          "description": "Retrieves the list of all the changes made to ticket objects. Returns 1000 (or fewer) changes, starting with the least recent change. Returned changes are limited to the last 24 hours. Changes prior to that period will not be returned.",
+          "name": "Get Tickets Changes Log",
+          "tag": "#HubSpot",
+          "recordTags": [
+            "Hubspot"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/080a1db8-f034-42c7-9706-0fcca04ca799",
+          "steps": [
+            {
+              "uuid": "080a1db8-f034-42c7-9706-0fcca04ca799",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "4e41e474-a12b-493c-9bf8-35562a1e61e7",
+                "title": "HubSpot: Get Tickets Changes Log",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "b6eddcf4-fe80-4888-b8d4-f68fe9742265",
+              "@type": "WorkflowStep",
+              "name": "Get Tickets Changes Log",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "HubSpot",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "hubspot",
+                "operation": "get_tickets_changes_log",
+                "operationTitle": "Get Tickets Changes Log"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "52df7c3d-ce31-46ec-a94e-7f3776764aaa",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Tickets Changes Log",
+              "sourceStep": "/api/3/workflow_steps/080a1db8-f034-42c7-9706-0fcca04ca799",
+              "targetStep": "/api/3/workflow_steps/b6eddcf4-fe80-4888-b8d4-f68fe9742265"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
