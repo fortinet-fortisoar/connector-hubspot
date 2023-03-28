@@ -28,7 +28,7 @@ class HubSpot(object):
         headers = {'Authorization': self.token, 'Content-Type': 'application/json'}
         if endpoint is None:
             service_url = f'{self.server_url}/crm-objects/v1/objects/tickets'
-        elif endpoint == 'crm-objects/v1/change-log/tickets':
+        elif endpoint == 'crm-objects/v1/change-log/tickets' or endpoint == 'crm-pipelines/v1/pipelines/tickets' or endpoint == 'owners/v2/owners':
             service_url = f'{self.server_url}/{endpoint}'
         else:
             service_url = f'{self.server_url}/crm-objects/v1/objects/tickets/{endpoint}'
@@ -165,8 +165,19 @@ def create_tickets(config, params):
 
 def update_tickets(config, params):
     hs = HubSpot(config)
-    payload = params.get('ticket_properties')
-    response = hs.make_rest_call(endpoint='batch-update', payload=json.dumps(payload), method='POST')
+    if params.pop('update') == 'Single Ticket':
+        payload = []
+        ticket_id = str(params.pop('ticket_id'))
+        params = build_params(params)
+        if params.get('ticket_properties'):
+            payload = check_tkt_properties(params.pop('ticket_properties'))
+        if params.get('createdate'):
+            params['createdate'] = convert_timestamp(params.get('createdate'))
+        payload.extend(create_payload(params))
+        response = hs.make_rest_call(endpoint=ticket_id, payload=json.dumps(payload), method='PUT')
+    else:
+        payload = params.get('ticket_properties')
+        response = hs.make_rest_call(endpoint='batch-update', payload=json.dumps(payload), method='POST')
     return response
 
 
@@ -188,11 +199,25 @@ def get_tickets_changes_log(config, params):
     return response
 
 
+def get_ticket_pipelines(config, params):
+    hs = HubSpot(config)
+    response = hs.make_rest_call(endpoint='crm-pipelines/v1/pipelines/tickets')
+    return response
+
+
+def get_owners_list(config, params):
+    hs = HubSpot(config)
+    response = hs.make_rest_call(endpoint='owners/v2/owners')
+    return response
+
+
 operations = {
     'get_all_tickets': get_all_tickets,
     'get_tickets_by_id': get_tickets_by_id,
     'create_tickets': create_tickets,
     'update_tickets': update_tickets,
     'delete_tickets': delete_tickets,
-    'get_tickets_changes_log': get_tickets_changes_log
+    'get_tickets_changes_log': get_tickets_changes_log,
+    'get_ticket_pipelines': get_ticket_pipelines,
+    'get_owners_list': get_owners_list
 }

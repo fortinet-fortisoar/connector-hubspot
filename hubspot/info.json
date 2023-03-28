@@ -671,15 +671,148 @@
       },
       "parameters": [
         {
-          "name": "ticket_properties",
-          "title": "Ticket Properties",
-          "type": "json",
-          "value": "[\n{\n\"objectId\": 1472380530,\n\"properties\": [\n{\n\"name\": \"content\",\n\"value\": \"This is another updated ticket updated.\"\n}\n]\n},\n{\n\"objectId\": 1473955247,\n\"properties\": [\n{\n\"name\": \"content\",\n\"value\": \"This is another updated ticket.\"\n}\n]\n}\n]",
-          "editable": true,
+          "title": "Update",
+          "name": "update",
+          "description": "Update a 'Single Ticket' or 'Multiple Tickets'. Up to 100 tickets can be updated in a single request.",
+          "type": "select",
           "visible": true,
+          "editable": true,
           "required": true,
-          "description": "Specify an array, with each element containing the ID of the ticket to update and a list of properties to update for that ticket.",
-          "tooltip": "An array, with each element containing the ID of the ticket to update and a list of properties to update for that ticket."
+          "options": [
+            "Single Ticket",
+            "Multiple Tickets"
+          ],
+          "onchange": {
+            "Single Ticket": [
+              {
+                "title": "Ticket ID",
+                "name": "ticket_id",
+                "type": "text",
+                "tooltip": "Specify the Ticket ID you want to update on HubSpot.",
+                "description": "Specify the Ticket ID you want to update on HubSpot.",
+                "required": true,
+                "editable": true,
+                "visible": true
+              },
+              {
+                "title": "Ticket Name",
+                "name": "subject",
+                "type": "text",
+                "tooltip": "Specify the name of the ticket to be updated on HubSpot.",
+                "description": "Specify the name of the ticket to be updated on HubSpot.",
+                "visible": true,
+                "editable": true,
+                "required": false
+              },
+              {
+                "title": "Pipeline",
+                "name": "hs_pipeline",
+                "type": "integer",
+                "placeholder": "0",
+                "tooltip": "Specify the ID of the pipeline to be updated on HubSpot.",
+                "description": "Specify the ID of the pipeline to be updated on HubSpot.",
+                "visible": true,
+                "editable": true,
+                "required": false
+              },
+              {
+                "title": "Ticket Status",
+                "name": "hs_pipeline_stage",
+                "type": "integer",
+                "placeholder": "1",
+                "tooltip": "Specify the ticket's stage in its pipeline to be updated.",
+                "description": "Specify the ticket's stage in its pipeline to be updated.",
+                "visible": true,
+                "editable": true,
+                "required": false
+              },
+              {
+                "title": "Ticket Description",
+                "name": "content",
+                "type": "text",
+                "tooltip": "Specify the description about the ticket to be updated on HubSpot",
+                "description": "Specify the description about the ticket to be updated on HubSpot",
+                "visible": true,
+                "editable": true,
+                "required": false
+              },
+              {
+                "title": "Source",
+                "name": "source_type",
+                "type": "select",
+                 "options": [
+                  "CHAT",
+                  "EMAIL",
+                  "FORM",
+                  "PHONE"
+                ],
+                "tooltip": "Select the source to be updated on HubSpot.",
+                "description": "Select the source to be updated on HubSpot.",
+                "visible": true,
+                "editable": true,
+                "required": false
+              },
+              {
+                "title": "Ticket Owner",
+                "name": "hubspot_owner_id",
+                "type": "integer",
+                "tooltip": "Specify the ID of the owner of the ticket to be updated.",
+                "description": "Specify the ID of the owner of the ticket to be updated.",
+                "visible": true,
+                "editable": true,
+                "required": false
+              },
+              {
+                "title": "Priority",
+                "name": "hs_ticket_priority",
+                "type": "select",
+                 "options": [
+                  "LOW",
+                  "MEDIUM",
+                  "HIGH"
+                ],
+                "tooltip": "Select the level of attention needed on the ticket.",
+                "description": "Select the level of attention needed on the ticket.",
+                "visible": true,
+                "editable": true,
+                "required": false
+              },
+              {
+                "title": "Create Date",
+                "name": "createdate",
+                "type": "datetime",
+                "tooltip": "Specify the creation date of the ticket to be updated.",
+                "description": "Specify the creation date of the ticket to be updated.",
+                "visible": true,
+                "editable": true,
+                "required": false
+              },
+              {
+                "name": "ticket_properties",
+                "title": "Other Properties",
+                "type": "json",
+                "value": "[\n{\n\"name\": \"hs_created_by_user_id\",\n\"value\": \"\"\n}\n]",
+                "editable": true,
+                "visible": true,
+                "required": false,
+                "description": "Specify a list of additional ticket properties you want to update for the ticket.",
+                "tooltip": "A list of additional ticket properties you want to update for the ticket."
+              }
+            ],
+            "Multiple Tickets": [
+              {
+                "name": "ticket_properties",
+                "title": "Ticket Properties",
+                "type": "json",
+                "value": "[\n{\n\"objectId\": 1472380530,\n\"properties\": [\n{\n\"name\": \"content\",\n\"value\": \"This is another updated ticket updated.\"\n}\n]\n},\n{\n\"objectId\": 1473955247,\n\"properties\": [\n{\n\"name\": \"content\",\n\"value\": \"This is another updated ticket.\"\n}\n]\n}\n]",
+                "editable": true,
+                "visible": true,
+                "required": true,
+                "description": "Specify an array, with each element containing the ID of the ticket to update and a list of properties to update for that ticket.",
+                "tooltip": "An array, with each element containing the ID of the ticket to update and a list of properties to update for that ticket."
+              }
+            ]
+          }
         }
       ],
       "enabled": true
@@ -760,6 +893,72 @@
           "visible": true
         }
       ],
+      "enabled": true
+    },
+    {
+      "operation": "get_ticket_pipelines",
+      "title": "Get Ticket Pipelines",
+      "description": "Retrieves the list of all pipelines for ticket.",
+      "category": "investigation",
+      "annotation": "get_ticket_pipelines",
+      "output_schema": {
+        "results": [
+          {
+            "pipelineId": "",
+            "createdAt": "",
+            "updatedAt": "",
+            "objectType": "",
+            "label": "",
+            "displayOrder": "",
+            "active": "",
+            "stages": [
+              {
+                "stageId": "",
+                "createdAt": "",
+                "updatedAt": "",
+                "label": "",
+                "displayOrder": "",
+                "metadata": {
+                  "ticketState": ""
+                },
+                "active": ""
+              }
+            ],
+            "default": ""
+          }
+        ]
+      },
+      "parameters": [],
+      "enabled": true
+    },
+    {
+      "operation": "get_owners_list",
+      "title": "Get Owners List",
+      "description": "Retrieves the list of all owners in a HubSpot account.",
+      "category": "investigation",
+      "annotation": "get_owners_list",
+      "output_schema": [
+          {
+              "portalId": "",
+              "ownerId": "",
+              "type": "",
+              "firstName": "",
+              "lastName": "",
+              "email": "",
+              "createdAt": "",
+              "updatedAt": "",
+              "remoteList": [
+                  {
+                      "portalId": "",
+                      "ownerId": "",
+                      "remoteId": "",
+                      "remoteType": "",
+                      "active": ""
+                  }
+              ]
+          }
+      ],
+      "parameters": [],
       "enabled": true
     }
   ]
