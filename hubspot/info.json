@@ -698,8 +698,8 @@
                 "title": "Ticket Name",
                 "name": "subject",
                 "type": "text",
-                "tooltip": "Specify the name of the ticket to be updated on HubSpot.This parameter value can be retrieved from Get Ticket Pipelines action.",
-                "description": "Specify the name of the ticket to be updated on HubSpot.This parameter value can be retrieved from Get Ticket Pipelines action.",
+                "tooltip": "Specify the name of the ticket to be updated on HubSpot.",
+                "description": "Specify the name of the ticket to be updated on HubSpot.",
                 "visible": true,
                 "editable": true,
                 "required": false
