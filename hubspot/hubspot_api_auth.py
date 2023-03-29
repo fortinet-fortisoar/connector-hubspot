@@ -108,11 +108,11 @@ class HubSpotAuth:
                 if response.text != "":
                     error_msg = ''
                     err_resp = response.json()
-                    if err_resp and 'error' in err_resp:
-                        failure_msg = err_resp.get('error_description')
-                        error_msg = 'Response {0}: {1} \n Error Message: {2}'.format(response.status_code,
-                                                                                     response.reason,
-                                                                                     failure_msg if failure_msg else '')
+                    if err_resp and 'message' in err_resp:
+                        failure_msg = err_resp.get('message')
+                        error_msg = 'Response {0}: {1} Error Message: {2}'.format(response.status_code,
+                                                                                  response.reason,
+                                                                                  failure_msg if failure_msg else '')
                     else:
                         err_resp = response.text
                 else:
