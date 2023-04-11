@@ -9,7 +9,7 @@
   "category": "Ticket Management",
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
-  "help_online": "",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/hubspot/550/hubspot-v1-0-0",
   "configuration": {
     "fields": [
       {
@@ -20,8 +20,8 @@
         "type": "text",
         "name": "resource",
         "value": "https://api.hubapi.com",
-        "tooltip": "The service-based URI to which you will connect and perform the automated operations.",
-        "description": "The service-based URI to which you will connect and perform the automated operations."
+        "tooltip": "The service-based URI to connect and perform automated operations. ",
+        "description": "The service-based URI to connect and perform automated operations. "
       },
       {
         "title": "Client ID",
@@ -51,7 +51,7 @@
         "type": "password",
         "name": "code",
         "tooltip": "The authorization code that you acquired during the authorization step.",
-        "description": "The authorization code that you acquired from this URL replacing CLIENT_ID and REDIRECT_URI 'https://app.hubspot.com/oauth/authorize?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&scope=oauth%20tickets'."
+        "description": "The authorization code that you acquired during the authorization step."
       },
       {
         "title": "Redirect URL",
@@ -80,7 +80,7 @@
     {
       "operation": "get_all_tickets",
       "title": "Get All Tickets",
-      "description": "Retrieves the list of all tickets from HubSpot maximum up to 100 per request. You can get more detailed list by specifying input parameters.",
+      "description": "Retrieves a list of all tickets from HubSpot up to the maximum of 100 per request. You can get a more detailed list by specifying ticket properties and other input parameters. ",
       "category": "investigation",
       "annotation": "get_all_tickets",
       "output_schema": {
@@ -165,7 +165,7 @@
           "type": "text",
           "placeholder": "subject, content, hs_pipeline, hs_pipeline_stage",
           "tooltip": "Comma-separated list of ticket properties to include in the response.",
-          "description": "Specify the Ticket Properties or a comma-separated list of Ticket Properties to included in the response (e.g., subject, content, hs_pipeline, hs_pipeline_stage).",
+          "description": "Specify ticket properties to include in the response (e.g., subject, content, hs_pipeline, hs_pipeline_stage). You can specify multiple comma-separated values for ticket properties. ",
           "required": false,
           "editable": true,
           "visible": true
@@ -176,7 +176,7 @@
           "type": "text",
           "placeholder": "subject, content, hs_pipeline, hs_pipeline_stage",
           "tooltip": "Comma-separated list of ticket properties to include in the response with full version history.",
-          "description": "This parameter behaves exactly like the properties parameter above, with the exception that properties included with this parameter also return the full version history for the property.",
+          "description": "Specify ticket properties to include in the response (e.g., subject, content, hs_pipeline, hs_pipeline_stage). You can specify multiple comma-separated values for ticket properties and get the full version history for the specified property. ",
           "required": false,
           "editable": true,
           "visible": true
@@ -186,7 +186,7 @@
           "name": "offset",
           "type": "integer",
           "tooltip": "Used to get the next set of results. If hasMore is true in the previous response, you use the returned offset value to get the next set of records.",
-          "description": "Used to get the next set of results. If hasMore is true in the previous response, you use the returned offset value to get the next set of records.",
+          "description": "Specify an offset value to get the next set of results. If hasMore is true in the previous response, use the returned offset value to get the next set of records. ",
           "required": false,
           "editable": true,
           "visible": true
@@ -197,7 +197,7 @@
     {
       "operation": "get_tickets_by_id",
       "title": "Get Tickets By ID",
-      "description": "Retrieves specific tickets from HubSpot based on the Ticket ID(s) and other input parameters you have specified.",
+      "description": "Retrieves specific tickets from HubSpot based on the Ticket IDs, properties, and other input parameters you have specified. ",
       "category": "investigation",
       "annotation": "get_tickets_by_id",
       "output_schema":{
@@ -289,7 +289,7 @@
           "name": "ticket_ids",
           "type": "text",
           "tooltip": "Comma-separated list of Ticket IDs. You can include up to 100 IDs in a single request",
-          "description": "Specify the Ticket ID or a comma-separated list of Ticket IDs to retrieve from the HubSpot.",
+          "description": "Specify the ticket ID to retrieve from HubSpot. You can specify multiple comma-separated list of ticket IDs. ",
           "required": true,
           "editable": true,
           "visible": true
@@ -300,7 +300,7 @@
           "type": "text",
           "placeholder": "subject, content, hs_pipeline, hs_pipeline_stage",
           "tooltip": "Comma-separated list of ticket properties to include in the response.",
-          "description": "Specify the Ticket Properties or a comma-separated list of Ticket Properties to included in the response (e.g., subject, content, hs_pipeline, hs_pipeline_stage).",
+          "description": "Specify ticket properties to include in the response (e.g., subject, content, hs_pipeline, hs_pipeline_stage). You can specify multiple comma-separated values for ticket properties. ",
           "required": false,
           "editable": true,
           "visible": true
@@ -311,7 +311,7 @@
           "type": "text",
           "placeholder": "subject, content, hs_pipeline, hs_pipeline_stage",
           "tooltip": "Comma-separated list of ticket properties to include in the response with full version history.",
-          "description": "This parameter behaves exactly like the properties parameter above, with the exception that properties included with this parameter also return the full version history for the property.",
+          "description": "Specify ticket properties to include in the response (e.g., subject, content, hs_pipeline, hs_pipeline_stage). You can specify multiple comma-separated values for ticket properties and get the full version history for the specified property. ",
           "required": false,
           "editable": true,
           "visible": true
@@ -321,7 +321,7 @@
           "name": "includeDeletes",
           "type": "checkbox",
           "tooltip": "Select to retrieve deleted records. By default, deleted records will not be returned by the API.",
-          "description": "You can check this box to retrieve even the deleted records. By default, deleted records will not be returned by the API.",
+          "description": "Select the checkbox to retrieve the deleted records. By default, deleted records are not returned by the API. ",
           "required": false,
           "editable": true,
           "visible": true,
@@ -333,7 +333,7 @@
     {
       "operation": "create_tickets",
       "title": "Create Tickets",
-      "description": "Creates a new Ticket(s) with the ticket properties based on the input parameters you have specified.",
+      "description": "Creates new tickets – single or multiple – based on the ticket properties you have specified. ",
       "category": "investigation",
       "annotation": "create_tickets",
       "output_schema":{
@@ -480,8 +480,8 @@
                 "name": "hs_pipeline",
                 "type": "integer",
                 "placeholder": "0",
-                "tooltip": "Specify the ID of the pipeline the ticket is in. This parameter value can be retrieved from Get Ticket Pipelines action.",
-                "description": "Specify the ID of the pipeline the ticket is in. This parameter value can be retrieved from Get Ticket Pipelines action.",
+                "tooltip": "Specify the pipeline ID containing the ticket. You can retrieve this parameter value from Get Ticket Pipelines action.",
+                "description": "Specify the pipeline ID containing the ticket. You can retrieve this parameter value from Get Ticket Pipelines action.",
                 "visible": true,
                 "editable": true,
                 "required": true
@@ -491,8 +491,8 @@
                 "name": "hs_pipeline_stage",
                 "type": "integer",
                 "placeholder": "1",
-                "tooltip": "Specify the ticket's stage in its pipeline. This parameter value can be retrieved from Get Ticket Pipelines action.",
-                "description": "Specify the ticket's stage in its pipeline. This parameter value can be retrieved from Get Ticket Pipelines action.",
+                "tooltip": "Specify the ticket's stage in its pipeline. You can retrieve this parameter value from Get Ticket Pipelines action.",
+                "description": "Specify the ticket's stage in its pipeline. You can retrieve this parameter value from Get Ticket Pipelines action.",
                 "visible": true,
                 "editable": true,
                 "required": true
@@ -501,8 +501,8 @@
                 "title": "Ticket Description",
                 "name": "content",
                 "type": "text",
-                "tooltip": "Specify the description about the ticket you want to create on HubSpot",
-                "description": "Specify the description about the ticket you want to create on HubSpot",
+                "tooltip": "Specify a description of the ticket you want to create on HubSpot.",
+                "description": "Specify a description of the ticket you want to create on HubSpot.",
                 "visible": true,
                 "editable": true,
                 "required": false
@@ -517,8 +517,8 @@
                   "FORM",
                   "PHONE"
                 ],
+                "description": "Select the channel where the ticket was originally submitted, from the following options: CHAT, EMAIL, FORM, PHONE.",
                 "tooltip": "Select the channel where ticket was originally submitted.",
-                "description": "Select the channel where ticket was originally submitted.",
                 "visible": true,
                 "editable": true,
                 "required": false
@@ -527,8 +527,8 @@
                 "title": "Ticket Owner",
                 "name": "hubspot_owner_id",
                 "type": "integer",
-                "tooltip": "Specify the ID of the owner of the ticket. This parameter value can be retrieved from Get Owners List action.",
-                "description": "Specify the ID of the owner of the ticket. This parameter value can be retrieved from Get Owners List action.",
+                "tooltip": "Specify the ID of the ticket's owner. You can retrieve this parameter value from Get Owners List action.",
+                "description": "Specify the ID of the ticket's owner. You can retrieve this parameter value from Get Owners List action.",
                 "visible": true,
                 "editable": true,
                 "required": false
@@ -543,7 +543,7 @@
                   "HIGH"
                 ],
                 "tooltip": "Select the level of attention needed on the ticket.",
-                "description": "Select the level of attention needed on the ticket.",
+                "description": "Select the level of attention needed on the ticket from the following options: LOW, MEDIUM, HIGH.",
                 "visible": true,
                 "editable": true,
                 "required": false
@@ -553,7 +553,7 @@
                 "name": "createdate",
                 "type": "datetime",
                 "tooltip": "Specify the creation date of the ticket. By default its created with current date and time.",
-                "description": "Specify the creation date of the ticket. By default its created with current date and time.",
+                "description": "Select the creation date of the ticket. By default, its created with current date and time.",
                 "visible": true,
                 "editable": true,
                 "required": false
@@ -566,7 +566,7 @@
                 "editable": true,
                 "visible": true,
                 "required": false,
-                "description": "Specify a list of additional ticket properties you want to set for new ticket.",
+                "description": "Specify a list of additional ticket properties that you want to set for this new ticket.",
                 "tooltip": "A list of additional ticket properties you want to set for new ticket."
               }
             ],
@@ -591,7 +591,7 @@
     {
       "operation": "update_tickets",
       "title": "Update Tickets",
-      "description": "Updates the ticket properties of a Ticket(s) based on the Ticket ID(s) you have specified.",
+      "description": "Updates tickets – single or multiple – based on the ticket properties you have specified. ",
       "category": "investigation",
       "annotation": "update_tickets",
       "output_schema": {
@@ -698,8 +698,8 @@
                 "title": "Ticket Name",
                 "name": "subject",
                 "type": "text",
-                "tooltip": "Specify the name of the ticket to be updated on HubSpot.",
-                "description": "Specify the name of the ticket to be updated on HubSpot.",
+                "tooltip": "Specify a new name of the ticket you want to update on HubSpot.",
+                "description": "Specify a new name of the ticket you want to update on HubSpot.",
                 "visible": true,
                 "editable": true,
                 "required": false
@@ -709,8 +709,8 @@
                 "name": "hs_pipeline",
                 "type": "integer",
                 "placeholder": "0",
-                "tooltip": "Specify the ID of the pipeline to be updated on HubSpot. This parameter value can be retrieved from Get Ticket Pipelines action.",
-                "description": "Specify the ID of the pipeline to be updated on HubSpot. This parameter value can be retrieved from Get Ticket Pipelines action.",
+                "tooltip": "Specify the pipeline ID containing the ticket. You can retrieve this parameter value from Get Ticket Pipelines action.",
+                "description": "Specify the pipeline ID containing the ticket. You can retrieve this parameter value from Get Ticket Pipelines action.",
                 "visible": true,
                 "editable": true,
                 "required": false
@@ -720,8 +720,8 @@
                 "name": "hs_pipeline_stage",
                 "type": "integer",
                 "placeholder": "1",
-                "tooltip": "Specify the ticket's stage in its pipeline to be updated. This parameter value can be retrieved from Get Ticket Pipelines action.",
-                "description": "Specify the ticket's stage in its pipeline to be updated. This parameter value can be retrieved from Get Ticket Pipelines action.",
+                "tooltip": "Specify the ticket's stage in its pipeline. You can retrieve this parameter value from Get Ticket Pipelines action.",
+                "description": "Specify the ticket's stage in its pipeline. You can retrieve this parameter value from Get Ticket Pipelines action.",
                 "visible": true,
                 "editable": true,
                 "required": false
@@ -730,8 +730,8 @@
                 "title": "Ticket Description",
                 "name": "content",
                 "type": "text",
-                "tooltip": "Specify the description about the ticket to be updated on HubSpot",
-                "description": "Specify the description about the ticket to be updated on HubSpot",
+                "tooltip": "Specify a description of the ticket you want to update on HubSpot.",
+                "description": "Specify a description of the ticket you want to update on HubSpot.",
                 "visible": true,
                 "editable": true,
                 "required": false
@@ -746,8 +746,8 @@
                   "FORM",
                   "PHONE"
                 ],
-                "tooltip": "Select the source to be updated on HubSpot.",
-                "description": "Select the source to be updated on HubSpot.",
+                "description": "Select the channel where the ticket was originally submitted, from the following options: CHAT, EMAIL, FORM, PHONE.",
+                "tooltip": "Select the channel where ticket was originally submitted.",
                 "visible": true,
                 "editable": true,
                 "required": false
@@ -756,8 +756,8 @@
                 "title": "Ticket Owner",
                 "name": "hubspot_owner_id",
                 "type": "integer",
-                "tooltip": "Specify the ID of the owner of the ticket to be updated. This parameter value can be retrieved from Get Owners List action.",
-                "description": "Specify the ID of the owner of the ticket to be updated. This parameter value can be retrieved from Get Owners List action.",
+                "tooltip": "Specify the ID of the ticket's owner. You can retrieve this parameter value from Get Owners List action.",
+                "description": "Specify the ID of the ticket's owner. You can retrieve this parameter value from Get Owners List action.",
                 "visible": true,
                 "editable": true,
                 "required": false
@@ -772,7 +772,7 @@
                   "HIGH"
                 ],
                 "tooltip": "Select the level of attention needed on the ticket.",
-                "description": "Select the level of attention needed on the ticket.",
+                "description": "Select the level of attention needed on the ticket from the following options: LOW, MEDIUM, HIGH.",
                 "visible": true,
                 "editable": true,
                 "required": false
@@ -781,8 +781,8 @@
                 "title": "Create Date",
                 "name": "createdate",
                 "type": "datetime",
-                "tooltip": "Specify the creation date of the ticket to be updated.",
-                "description": "Specify the creation date of the ticket to be updated.",
+                "tooltip": "Select the creation date of the ticket to update on HubSpot.",
+                "description": "Select the creation date of the ticket to update on HubSpot.",
                 "visible": true,
                 "editable": true,
                 "required": false
@@ -795,7 +795,7 @@
                 "editable": true,
                 "visible": true,
                 "required": false,
-                "description": "Specify a list of additional ticket properties you want to update for the ticket.",
+                "description": "Specify a list of additional ticket properties that you want to update for the ticket.",
                 "tooltip": "A list of additional ticket properties you want to update for the ticket."
               }
             ],
@@ -820,7 +820,7 @@
     {
       "operation": "delete_tickets",
       "title": "Delete Tickets",
-      "description": "Deletes the Ticket(s) based on the Ticket ID(s) you have specified.",
+      "description": "Deletes the tickets – single or multiple – based on the ticket ID you have specified. ",
       "category": "investigation",
       "annotation": "delete_tickets",
       "output_schema": {
@@ -833,7 +833,7 @@
           "name": "ticket_ids",
           "type": "text",
           "tooltip": "Comma-separated list of Ticket IDs. You can include up to 100 IDs in a single request",
-          "description": "Specify the Ticket ID or a comma-separated list of Ticket IDs to delete from the HubSpot.",
+          "description": "Specify the ticket ID to delete from HubSpot. You can specify multiple comma-separated list of ticket IDs. ",
           "visible": true,
           "editable": true,
           "required": true
@@ -844,7 +844,7 @@
     {
       "operation": "get_tickets_changes_log",
       "title": "Get Tickets Changes Log",
-      "description": "Retrieves the list of all the changes made to ticket objects. Returns 1000 (or fewer) changes, starting with the least recent change. Returned changes are limited to the last 24 hours. Changes prior to that period will not be returned.",
+      "description": "Retrieves the list of all the changes made to the ticket. Returns a maximum of 1000 changes, starting with the oldest change within the last 24 hours. Changes prior to this period are not returned. ",
       "category": "investigation",
       "annotation": "get_tickets_changes_log",
       "output_schema": [
@@ -866,8 +866,8 @@
           "title": "Timestamp",
           "name": "timestamp",
           "type": "text",
-          "tooltip": "The Timestamp of the last change you pulled.",
-          "description": "The timestamp of the last change you pulled.",
+          "tooltip": "Specify the timestamp of the last change you pulled. ",
+          "description": "Specify the timestamp of the last change you pulled. ",
           "required": false,
           "editable": true,
           "visible": true
@@ -876,8 +876,8 @@
           "title": "Change Type",
           "name": "change_type",
           "type": "text",
-          "tooltip": "The last Change Type you pulled. If you are providing Change Type then provide Timestamp and Object ID as well.",
-          "description": "The last Change Type you pulled. If you are providing Change Type then provide Timestamp and Object ID as well.",
+          "tooltip": "Specify the last change type you pulled. \nNOTE: Specify the Timestamp and Object ID fields when specifying value in this field.",
+          "description": "Specify the last change type you pulled. \nNOTE: Specify the Timestamp and Object ID fields when specifying value in this field.",
           "required": false,
           "editable": true,
           "visible": true
@@ -886,8 +886,8 @@
           "title": "Object ID",
           "name": "object_id",
           "type": "integer",
-          "tooltip": "The ID of the last object you received changes for. If you are providing Object ID then provide Change Type and Timestamp as well.",
-          "description": "The ID of the last object you received changes for. If you are providing Object ID then provide Change Type and Timestamp as well.",
+          "tooltip": "Specify the ID of the last object for which you received changes. \nNOTE: Specify the Timestamp and Change Type fields when specifying value in this field. ",
+          "description": "Specify the ID of the last object for which you received changes. \nNOTE: Specify the Timestamp and Change Type fields when specifying value in this field. ",
           "required": false,
           "editable": true,
           "visible": true
@@ -898,7 +898,7 @@
     {
       "operation": "get_ticket_pipelines",
       "title": "Get Ticket Pipelines",
-      "description": "Retrieves the list of all pipelines for ticket.",
+      "description": "Retrieves a list of all pipelines for the configured account. ",
       "category": "investigation",
       "annotation": "get_ticket_pipelines",
       "output_schema": {
@@ -934,7 +934,7 @@
     {
       "operation": "get_owners_list",
       "title": "Get Owners List",
-      "description": "Retrieves the list of all owners in a HubSpot account.",
+      "description": "Retrieves the list of owners associated with a HubSpot account. ",
       "category": "investigation",
       "annotation": "get_owners_list",
       "output_schema": [
